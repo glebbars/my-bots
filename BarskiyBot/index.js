@@ -114,10 +114,6 @@ const bot = new TelegramBot(token, {
 
 /// SHARE CONTENT FROM YOUR BOT (GUF, VIDEO, ARTICLE, etc.)
 
-// bot.on('callback_query', query => {
-//   bot.answerCallbackQuery(query.id, `${query.data}`)
-// })
-
 // bot.on('inline_query', query => {
 
 //   const results = []
@@ -139,8 +135,8 @@ const bot = new TelegramBot(token, {
 //     cache_time: 0
 //   })
 // })
-
-/// SHARE CONTENT FROM YOUR BOT (GUF, VIDEO, ARTICLE, etc.)
+//
+///// SHARE CONTENT FROM YOUR BOT (GUF, VIDEO, ARTICLE, etc.)
 
 
 const inlineKeyboard = [
@@ -175,10 +171,10 @@ bot.onText(/\/start/, (msg, [source, match]) => {
     }
   })
 
-  // bot.on('callback_query', query => {
-  //   bot.answerCallbackQuery(query.id, `${query.data}`)
-  //   bot.sendMessage(chatID, query.data)
-  // })
+  bot.on('callback_query', query => {
+    console.log('8')
+    // bot.answerCallbackQuery(query.id, `${query.data}`)
+  })
 })
 
 bot.on('callback_query', query => {
@@ -205,8 +201,9 @@ bot.on('callback_query', query => {
         reply_markup: {inline_keyboard: inlineKeyboard}
       })
       break;
-      case 'delete': 
+    case 'delete': 
       bot.deleteMessage(chat.id, message_id)
+      break;
   }
 
     bot.answerCallbackQuery({
